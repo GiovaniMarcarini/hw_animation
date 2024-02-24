@@ -1,14 +1,31 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:hw_animation/grow_transition.dart';
-import 'package:hw_animation/logo_widget.dart';
-import 'package:hw_animation/space_shooter_game.dart';
+import 'package:hw_animation/splash/grow_transition.dart';
+import 'package:hw_animation/splash/logo_widget.dart';
+import 'package:hw_animation/game/space_shooter_game.dart';
 
 void main() => runApp(
-    GameWidget(
-        game: SpaceShooterGame()
-    )
+    const Home()
 );
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/animations',
+      routes: {
+        '/animations' : (context) => LogoApp(),
+        '/game': (context) => GameWidget(
+            game: SpaceShooterGame()
+        )
+      }
+    );
+  }
+}
+
 class LogoApp extends StatefulWidget {
   const LogoApp({super.key});
   @override
@@ -23,14 +40,12 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 3),
         vsync: this);
     animation = CurvedAnimation(parent: controller, curve: Curves.easeIn)
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
-          controller.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          controller.forward();
+          Navigator.pushNamed(context, '/game');
         }
       });
     controller.forward();

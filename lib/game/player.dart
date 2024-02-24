@@ -1,5 +1,5 @@
 import 'package:flame/components.dart';
-import 'package:hw_animation/space_shooter_game.dart';
+import 'package:hw_animation/game/space_shooter_game.dart';
 
 class Player extends SpriteAnimationComponent with HasGameRef<SpaceShooterGame> {
 

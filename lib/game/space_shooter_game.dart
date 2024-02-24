@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
-import 'package:hw_animation/player.dart';
+import 'package:hw_animation/game/player.dart';
 
 class SpaceShooterGame extends FlameGame with PanDetector{
   late Player player;
